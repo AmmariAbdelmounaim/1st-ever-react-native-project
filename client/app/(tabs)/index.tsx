@@ -108,7 +108,6 @@ export default function App() {
         style={StyleSheet.absoluteFillObject}
         facing="back"
         onBarcodeScanned={({ data }) => {
-          console.log(data);
           if (data && !qrLock.current) {
             qrLock.current = true;
             setTimeout(async () => {
