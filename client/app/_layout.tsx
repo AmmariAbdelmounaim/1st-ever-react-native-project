@@ -12,6 +12,7 @@ import { Text } from "@/components/ui";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { AsyncStorage } from "expo-sqlite/kv-store";
 import { ItemsProvider } from "@/lib/hooks/use-items";
+import { HistoryProvider } from "@/lib/hooks/use-history";
 
 const LIGHT_THEME: Theme = {
   dark: false,
@@ -124,8 +125,10 @@ function Providers({ children }: { children: React.ReactElement }) {
       <StripeProvider publishableKey={process.env.EXPO_PUBLIC_STRIPE_PK!}>
         <APIProvider>
           <ItemsProvider>
-            <StatusBar style={isDarkColorScheme ? "light" : "dark"} />
-            {children}
+            <HistoryProvider>
+              <StatusBar style={isDarkColorScheme ? "light" : "dark"} />
+              {children}
+            </HistoryProvider>
           </ItemsProvider>
         </APIProvider>
       </StripeProvider>
